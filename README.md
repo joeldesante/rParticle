@@ -16,7 +16,6 @@ rParticle is very unintrusive. The idea behind the module is to give the develop
 In order to achive this, there are a few properties that are exposed to the user.
 
 **Particle Emitter** *Object* This object handles the spawning, tracking, and destruction of Particles
-Properties:
 ```
   ParticleEmitter.particles:
     default = Array
@@ -42,5 +41,38 @@ Properties:
     This property tracks the ammount of elapsed time has occured since the last particle has spawned. 
     This properies values are fairly unpredictable. Changing the value will cause problems with spawning.
     Using this property is NOT recomended as it is for internal use only.
+    
+```
+
+
+**Particle** *Object* This object represents a Particle.
+```
+  Particle.element: GUIElement
+    Represents the GUIElement which makes up the particle.
+    
+	Particle.position: Vector2
+    default: Vector2.new(0,0)
+    
+	Particle.velocity: Vector2
+    default Vector2.new(0,0)
+    
+	Particle.age: Number
+    READ ONLY
+    This represents the time in seconds that the particle has been alive for.
+    It is not recommended that this property is overriden or changed.
+  
+	Particle.ticks: Number
+    READ ONLY
+    This represents the number of updates that have elapsed during the tme the particle has been alive.
+  
+	Particle.maxAge: Number
+    default: 1
+    The max amount of time in seconds the particle will exist. Once age equals or surpasses this value the
+    particle will be flagged as DEAD.
+  
+	Particle.isDead: Boolean
+    default: false
+    The flg that determines if the particle is ALIVE or DEAD. If this value is true, the update loop 
+    will call the destroy function.
     
 ```
