@@ -23,22 +23,24 @@ Properties:
     Even though this property is considered a public property. It should be considered as a READ ONLY
     property. Modifying this array directly could lead to unexpected results.
   
-	ParticleEmitter.hook:
+  ParticleEmitter.hook:
     default: Set by constructor.
     The parent property that particles will spawn out of. Typically this object is a Frame.
   
-	ParticleEmitter.rate: 
+  ParticleEmitter.rate: 
     default = 5
     How many particles will be spawned per second.
 
-	ParticleEmitter.onUpdate(particle, deltaTime):
-  This function is called when a particle is updated. Particle manipulation should be done here.
+  ParticleEmitter.onUpdate(particle, deltaTime):
+    This function is called when a particle is updated. Particle manipulation should be done here.
   
   ParticleEmitter.onSpawn(particle)
-  This function is called when a particle is spawned. Particle manipulation should be done here.
+    This function is called when a particle is spawned. Particle manipulation should be done here.
 
-	ParticleEmitter.__elapsedTime:
+  ParticleEmitter.__elapsedTime:
     Private Property
-    This property tracks the ammount of elapsed time has occured since the last particle has spawned. This properies values are fairly unpredictable. Changing the value will cause problems with spawning. Using this property is NOT recomended as it is for internal use only.
+    This property tracks the ammount of elapsed time has occured since the last particle has spawned. 
+    This properies values are fairly unpredictable. Changing the value will cause problems with spawning.
+    Using this property is NOT recomended as it is for internal use only.
     
 ```
