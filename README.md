@@ -8,7 +8,7 @@ Below is the basic docs needed to use rParticle.
 Import the Roblox Module into Replicatedstorage:
   1. Right click **ReplicatedStorage** (or where ever you want to install the module).
   2. Click **Insert from File**.
-  3. Select the module (which can be downloaded [here](https://github.com/JoelDesante/rParticle/releases)
+  3. Select the module (which can be downloaded [here](https://github.com/JoelDesante/rParticle/releases))
   
 ### Usage
 rParticle is very unintrusive. The idea behind the module is to give the developer as much control as possible on how the particles act.
