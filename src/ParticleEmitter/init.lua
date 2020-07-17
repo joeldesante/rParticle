@@ -1,16 +1,17 @@
 local Particle = require(script.Particle);
 local ParticleEmitter = {};
 
-local function spawnParticle(hook, onSpawn)
-	local particle = Particle.new(game.ReplicatedStorage.Particle:Clone());
+local function spawnParticle(hook, particleElement, onSpawn)
+	local particle = Particle.new(particleElement:Clone());
 	particle.element.Parent = hook;
 	onSpawn(particle);
 	return particle;
 end
 
-function ParticleEmitter.new(hook)
+function ParticleEmitter.new(hook, particleElement)
 	local self = {};
 	self.particles = {};
+	self.particleElement = particleElement;
 	self.hook = hook;
 	self.rate = 5;
 
@@ -35,7 +36,7 @@ function ParticleEmitter.new(hook)
 			given rate can be achieved.
 		]]
 		while self.__elapsedTime >= (1/self.rate) do
-			table.insert(self.particles, spawnParticle(self.hook, self.onSpawn));
+			table.insert(self.particles, spawnParticle(self.hook, self.particleElement, self.onSpawn));
 			self.__elapsedTime = self.__elapsedTime - (1/self.rate);
 		end
 	end)
