@@ -21,7 +21,7 @@ function ParticleEmitter.new(hook, particleElement)
 	-- Internal Values
 	self.__elapsedTime = 0;
 
-	game:GetService("RunService").RenderStepped:Connect(function(delta)
+	game:GetService("RunService").Heartbeat:Connect(function(delta)
 		self.__elapsedTime = self.__elapsedTime + delta;	
 		for index, particle in ipairs(self.particles) do
 			if particle.isDead then 
