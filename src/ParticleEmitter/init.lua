@@ -8,6 +8,11 @@ local function spawnParticle(hook, particleElement, onSpawn)
 	return particle;
 end
 
+--[[
+	Creates a new particle emitter.
+	hook - This is the UI element which the particle emitter will latch on to.
+	particleElement - This is the UI element which will be used as the particle.
+]]
 function ParticleEmitter.new(hook, particleElement)
 	local self = {};
 	self.particles = {};
@@ -35,13 +40,22 @@ function ParticleEmitter.new(hook, particleElement)
 			This loop will time the particle spawns so that the
 			given rate can be achieved.
 		]]
-		while self.__elapsedTime >= (1/self.rate) do
-			table.insert(self.particles, spawnParticle(self.hook, self.particleElement, self.onSpawn));
-			self.__elapsedTime = self.__elapsedTime - (1/self.rate);
-		end
+		--if self.rate > 0 then	-- Note: 1/0 results as `inf` in lua.
+			while self.__elapsedTime >= (1/self.rate) do
+				table.insert(self.particles, spawnParticle(self.hook, self.particleElement, self.onSpawn));
+				self.__elapsedTime = self.__elapsedTime - (1/self.rate);
+			end
+		--end
 	end)
 
 	return setmetatable(self, {__index = ParticleEmitter});
+end
+
+--[[
+	Destroys the particle emitter.
+]]
+function ParticleEmitter:Destroy()
+	self.rate = 0;
 end
 
 return ParticleEmitter;
