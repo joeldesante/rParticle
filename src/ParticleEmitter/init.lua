@@ -26,7 +26,7 @@ function ParticleEmitter.new(hook, particleElement)
 	-- Internal Values
 	self.__elapsedTime = 0;
 
-	game:GetService("RunService").Heartbeat:Connect(function(delta)
+	self.__runServiceConnection = game:GetService("RunService").Heartbeat:Connect(function(delta)
 		self.__elapsedTime = self.__elapsedTime + delta;	
 		for index, particle in ipairs(self.particles) do
 			if particle.isDead then 
@@ -40,12 +40,12 @@ function ParticleEmitter.new(hook, particleElement)
 			This loop will time the particle spawns so that the
 			given rate can be achieved.
 		]]
-		--if self.rate > 0 then	-- Note: 1/0 results as `inf` in lua.
+		if self.rate > 0 then	-- Note: 1/0 results as `inf` in lua.
 			while self.__elapsedTime >= (1/self.rate) do
 				table.insert(self.particles, spawnParticle(self.hook, self.particleElement, self.onSpawn));
 				self.__elapsedTime = self.__elapsedTime - (1/self.rate);
 			end
-		--end
+		end
 	end)
 
 	return setmetatable(self, {__index = ParticleEmitter});
@@ -55,7 +55,20 @@ end
 	Destroys the particle emitter.
 ]]
 function ParticleEmitter:Destroy()
-	self.rate = 0;
+	self.rate = 0;	-- Stop emitting new particles
+	for _,particle in ipairs(self.particles) do
+		if particle then
+			particle:Destroy();	-- Flags all the particles for removal.
+		end
+	end
+
+	-- Make disconnections
+	if self.__runServiceConnection then
+		self.__runServiceConnection:Disconnect();
+	end
+
+	setmetatable(self, nil);
+	self = nil;
 end
 
 return ParticleEmitter;
