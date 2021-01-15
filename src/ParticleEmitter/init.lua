@@ -61,7 +61,6 @@ function ParticleEmitter:Destroy()
 		return;
 	end
 
-	self.rate = 0;	-- Stop emitting new particles
 	self.__dead = true;
 	for _,particle in ipairs(self.particles) do
 		if particle then
@@ -73,9 +72,6 @@ function ParticleEmitter:Destroy()
 	if self.__runServiceConnection then
 		self.__runServiceConnection:Disconnect();
 	end
-
-	setmetatable(self, nil);
-	self = nil;
 end
 
 return ParticleEmitter;
