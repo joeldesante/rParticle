@@ -1,10 +1,10 @@
+local ParticlePhysicsEngine = require(script.ParticlePhysicsEngine)
 local Particle = {};
 
-function Particle.new(element)
+function Particle.new(element, emitter)
 	local self = {};
 	self.element = element;
-	self.position = Vector2.new(0,0);
-	self.velocity = Vector2.new(0,0);
+	self.physics = ParticlePhysicsEngine.new(emitter);
 	self.age = 0;
 	self.ticks = 0;
 	self.maxAge = 1;
@@ -27,11 +27,8 @@ function Particle:Update(delta, onUpdate)
 	-- Callback
 	onUpdate(self, delta)
 	
-	-- Apply the forces
-	self.element.Position = UDim2.new(
-		UDim.new(0, self.position.X),
-		UDim.new(0, self.position.Y)
-	);
+	self.physics:Update(delta);
+	self.element.Position = self.physics.elementPosition; 
 
 end
 

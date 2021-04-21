@@ -1,0 +1,5 @@
+- Particles elements now are parented to an internal "_particles" folder. This keeps the particles more organized within the emitter.
+-- This folder be accesed from the emitter object under as ParticleEmitter#particleFolder
+
+- Added the particle domain.
+-- The particle emmiter will now construct a domin that conforms to the dimensions of the emitters parent. This will be the area in which particles are allowed to operate.
