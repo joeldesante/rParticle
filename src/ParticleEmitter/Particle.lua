@@ -15,7 +15,7 @@ end
 
 function Particle:Update(delta, onUpdate)
 	
-	if self.age >= self.maxAge and self.age > 0 then 
+	if self.age >= self.maxAge and self.maxAge > 0 then 
 		self:Destroy()
 		return;
 	end;
