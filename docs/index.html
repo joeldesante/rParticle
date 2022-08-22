@@ -5,8 +5,190 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>rParticle</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
-    <h1>This is the beginings of a documentation.</h1>
+    <section class="hero">
+        <div class="hero-body">
+            <h1 class="title">rParticle</h1>
+            <p class="subtitle">The super light weight and highly customizable 2D particle system for Roblox.</p>
+            <div>
+                <a href="https://github.com/joeldesante/rParticle" target="_blank">GitHub Repository</a> |
+                <a href="https://github.com/joeldesante/rParticle/releases" target="_blank">Download</a> |
+                <a href="https://devforum.roblox.com/t/rparticle-the-light-weight-open-source-gui-particle-system/680038?u=joeldes" target="_blank">DevForum Post</a>
+            </div>
+        </div>
+    </section>
+    <section class="container is-fluid">
+        <h2 class="title is-4">Getting Started</h2>
+        <p>
+            rParticle has been designed to give the programmer as much control over how 2D particles are handled as possible.
+
+        </p>
+    </section>
+    <br>
+    <section class="container is-fluid">
+        <h2 class="title is-4">Installation</h2>
+        <p class="subtitle is-6">Installing rParticle into your game is easy!</p>
+        <ol class="container is-fluid">
+            <li>
+                First <a href="https://github.com/joeldesante/rParticle/releases">visit our downloads page</a> and grab the rbxm file.
+            </li>
+            <li>
+                Open your game in Roblox Studio and right click on <strong>ReplicatedStorage</strong> (or anyother location you'de like to install the module to).
+                Select <strong>Insert from File</strong> and then select the downloaded module from step 1.
+            </li>
+            <li>
+                You are done! Now, require the module into the script which will be using rParticle. 
+            </li>
+        </ol>
+    </section>
+    <br>
+    <section class="container is-fluid">
+        <h2 class="title is-4">API Reference</h2>
+        <p class="subtitle is-6">Scroll to the next section for examples.</p>
+
+        <article class="container is-fluid">
+            <h3 class="title is-6">Particle Emitter</h3>
+            <p class="subtitle is-6">The Particle Emitter object is responsible for managing and handling all 2D particles.</p>
+            <br>
+            <h4 class="title is-6">Properties</h4>
+            <div>
+                <code>rate</code>
+                <p>The number of particles to be emitted per second.</p>
+                <p>Default: 5</p>
+            </div>
+            <br>
+
+            <div>
+                <code>onSpawn</code>
+                <p>A callback function called when a particle is spawned.</p>
+                <p>Passed Values: particle</p>
+            </div>
+            <br>
+
+            <div>
+                <code>onUpdate</code>
+                <p>A callback function called when a particle is updated.</p>
+                <p>Passed Values: particle, delta</p>
+            </div>
+            <br>
+
+            <br>
+            <h4 class="title is-6">Global Functions</h4>
+            <div>
+                <div>
+                    <code>ParticleEmitter.new(hook, particle)</code>
+                </div>
+                <p>Creates a new ParticleEmitter instance</p>
+                <p>
+                    <strong>hook</strong> This is a UI Element (like a frame) which the emitter will use as a host for its operations.
+                    Generated particles will be parented to the hook and any operation on an individual particle is relative to the hook element.
+                    For example, if a particles position is set upon it spawning, the location in which the particle will appear will be relative to
+                    the location of the hook element.
+                </p>
+                <p>
+                    <strong>particle</strong> This is any singular UI Element (like a frame) which the emitter will use as the particle to be emitted.
+                    These particles can contain scripts and other elements.
+                </p>
+            </div>
+
+            <br>
+            <h4 class="title is-6">Object Functions</h4>
+            <div>
+                <div>
+                    <code>:Destroy()</code>
+                </div>
+                <p>Destroys the ParticleEmitter instance</p>
+            </div>
+
+            <br>
+            <div>
+                <div>
+                    <code>:Emit(count)</code>
+                </div>
+                <p>Emits a particle</p>
+                <p>
+                    <strong>count</strong> This is the number of particles to be emitted.
+                </p>
+            </div>
+        </article>
+        <hr>
+        <article class="container is-fluid">
+            <h3 class="title is-6">Particle</h3>
+            <p class="subtitle is-6">The Particle object represents a particle.</p>
+            <br>
+            <h4 class="title is-6">Properties</h4>
+            <div>
+                <code>element</code>
+                <p>The UI Element which this particle represents.</p>
+            </div>
+            <br>
+
+            <div>
+                <code>age</code>
+                <p>The amount of time in seconds the particle has been alive.</p>
+            </div>
+            <br>
+
+            <div>
+                <code>maxAge</code>
+                <p>The max amount of time in seconds the particle can be alive.</p>
+            </div>
+            <br>
+
+            <div>
+                <code>position</code>
+                <p>The location of the particle relative to the hook.</p>
+            </div>
+            <br>
+
+            <div>
+                <code>velocity</code>
+                <p>This is a placeholder which is intended to be used when writing movement code for particle.</p>
+            </div>
+            <br>
+
+            <h4 class="title is-6">Object Functions</h4>
+            <div>
+                <div>
+                    <code>:Destroy()</code>
+                </div>
+                <p>Destroys the Particle instance</p>
+            </div>
+
+            <br>
+            <div>
+                <div>
+                    <code>:Emit(count)</code>
+                </div>
+                <p>Emits a particle</p>
+                <p>
+                    <strong>count</strong> This is the number of particles to be emitted.
+                </p>
+            </div>
+        </article>
+    </section>
+
+    <br>
+    <section class="container is-fluid">
+        <h2 class="title is-4">Example</h2>
+        <pre>
+            <code>
+local ParticleEmitter = require(game.ReplicatedStorage.ParticleEmitter).new(script.Parent, game.ReplicatedStorage:WaitForChild("ParticleVP"));
+ParticleEmitter.rate = 10;
+
+ParticleEmitter.onSpawn = function(particle)
+    particle.velocity = Vector2.new(math.random(-700, 700), 500);
+    particle.maxAge = 10;
+end
+
+ParticleEmitter.onUpdate = function(particle, deltaTime)
+    particle.velocity = particle.velocity - Vector2.new(0, 10);
+    particle.position = particle.position - (particle.velocity/3 * deltaTime);
+end
+            </code>
+        </pre>
+    </section>
 </body>
 </html>
