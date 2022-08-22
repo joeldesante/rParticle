@@ -42,13 +42,23 @@ function ParticleEmitter.new(hook, particleElement)
 		]]
 		if self.rate > 0 and (self.__dead == false) then	-- Note: 1/0 results as `inf` in lua.
 			while self.__elapsedTime >= (1/self.rate) do
-				table.insert(self.particles, spawnParticle(self.hook, self.particleElement, self.onSpawn));
+				self:Emit(1)
 				self.__elapsedTime = self.__elapsedTime - (1/self.rate);
 			end
 		end
 	end)
 
 	return setmetatable(self, {__index = ParticleEmitter});
+end
+
+--[[
+	Emits particle(s) given a count
+]]
+function ParticleEmitter:Emit(count)
+	if count < 1 then return {} end
+	for _=count,1,-1 do
+		table.insert(self.particles, spawnParticle(self.hook, self.particleElement, self.onSpawn));
+	end
 end
 
 --[[
