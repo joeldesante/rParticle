@@ -1,5 +1,6 @@
 local Particle = require(script.Particle);
 local ParticleEmitter = {};
+ParticleEmitter.__index = ParticleEmitter
 
 local function spawnParticle(hook, particleElement, onSpawn)
 	local particle = Particle.new(particleElement:Clone());
@@ -48,7 +49,7 @@ function ParticleEmitter.new(hook, particleElement)
 		end
 	end)
 
-	return setmetatable(self, {__index = ParticleEmitter});
+	return setmetatable(self, ParticleEmitter);
 end
 
 --[[
