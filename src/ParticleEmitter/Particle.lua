@@ -1,4 +1,5 @@
 local Particle = {};
+Particle.__index = Particle;
 
 function Particle.new(element)
 	local self = {};
@@ -10,7 +11,7 @@ function Particle.new(element)
 	self.maxAge = 1;
 	self.isDead = false;
 
-	return setmetatable(self, {__index = Particle});
+	return setmetatable(self, Particle);
 end
 
 function Particle:Update(delta, onUpdate)
